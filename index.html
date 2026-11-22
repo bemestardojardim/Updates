@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caixa Fácil: caixa simples para o seu comércio</title>
+<meta name="description" content="Caixa Fácil: app de caixa para Android. Somatório por centavos, troco, Pix com QR Code, fiado com nome e contato, histórico e sincronização entre atendentes.">
+<meta name="theme-color" content="#0f3b5c">
+<style>
+:root{--bg:#f4f8fc;--card:#fff;--ink:#0a2e4b;--mut:#4d6a82;--line:#d6e2ee;--brand:#0f3b5c;--gold:#f0c45a;--ok:#39b87a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1a26;--card:#15263a;--ink:#eaf2fa;--mut:#9db4c9;--line:#26405a;--brand:#0f3b5c}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header.hero{background:linear-gradient(160deg,#0f3b5c,#1d5f8f);color:#fff;padding:44px 0 56px}
+.hero .wrap{display:grid;gap:28px;grid-template-columns:1.1fr .9fr;align-items:center}
+@media(max-width:780px){.hero .wrap{grid-template-columns:1fr}}
+.tag{display:inline-block;background:rgba(240,196,90,.18);color:var(--gold);font-weight:700;font-size:13px;padding:4px 12px;border-radius:99px;letter-spacing:.04em}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.08;margin:12px 0 12px;letter-spacing:-.02em}
+.hero p{color:#d5e6f5;max-width:520px;margin:0 0 22px;font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#2a1f00;font-weight:800;font-size:18px;padding:15px 26px;border-radius:14px;text-decoration:none;box-shadow:0 5px 0 #b38f2e}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #b38f2e}
+.btn.sec{background:transparent;color:#fff;box-shadow:none;border:2px solid rgba(255,255,255,.4);font-size:15px;padding:11px 18px;font-weight:700}
+.meta{margin-top:14px;font-size:14px;color:#bcd4ea;min-height:1.4em}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.phone{justify-self:center;width:230px;background:#eef3f9;border:6px solid #0a2438;border-radius:34px;padding:12px;box-shadow:0 20px 50px rgba(0,0,0,.4);color:#0a2e4b}
+.phone .t{text-align:center;font-weight:800;font-size:13px;margin-bottom:8px}
+.phone .disp{background:#c9d9e8;border-radius:16px;padding:8px 12px;text-align:right;font:800 26px 'Courier New',monospace;margin-bottom:8px}
+.phone .vis{background:#0f3b5c;color:var(--gold);border-radius:12px;padding:6px 10px;text-align:right;font:700 15px 'Courier New',monospace;margin-bottom:8px}
+.phone .k{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.phone .k b{background:#fff;border-radius:10px;padding:8px 0;text-align:center;font:700 15px 'Courier New',monospace;box-shadow:0 2px 0 #9fb3c7}
+.phone .k .y{background:var(--gold)}.phone .k .g{background:var(--ok);color:#fff;grid-column:span 2;font-size:12px;padding:10px 0}.phone .k .z{grid-column:span 2}
+section{padding:46px 0}
+h2{font-size:clamp(24px,4vw,34px);margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--mut);margin:0 0 26px;max-width:620px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card .i{font-size:28px}.card h3{margin:6px 0 4px;font-size:18px}.card p{margin:0;color:var(--mut);font-size:15px}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 16px 62px;position:relative}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:14px;width:34px;height:34px;border-radius:50%;background:var(--brand);color:var(--gold);display:grid;place-items:center;font-weight:800}
+.step b{display:block}.step span{color:var(--mut);font-size:15px}
+.notas{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;white-space:pre-wrap;color:var(--mut);font-size:15px;display:none}
+code{background:rgba(127,160,190,.18);padding:2px 6px;border-radius:6px;word-break:break-all;font-size:13px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}
+details p{margin:8px 0 0;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--mut);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div>
+<span class="tag">PARA ANDROID</span>
+<h1>Caixa Fácil</h1>
+<p>Um caixa simples e rápido para o seu comércio: some os itens, calcule o troco, receba por Pix com QR Code e controle o fiado, tudo no celular.</p>
+<div class="acoes">
+<a class="btn" id="btnBaixar" href="https://github.com/bemestardojardim/Updates/releases/latest">⬇️ Baixar o app</a>
+<a class="btn sec" href="#instalar">Como instalar</a>
+</div>
+<div class="meta" id="meta">Buscando a versão mais recente...</div>
+</div>
+<div class="phone" aria-hidden="true">
+<div class="t">Atendente Maria</div>
+<div class="disp">36,00</div>
+<div class="vis">12,50</div>
+<div class="k"><b>7</b><b>8</b><b>9</b><b>C</b><b>4</b><b>5</b><b>6</b><b>,</b><b>1</b><b>2</b><b>3</b><b class="y">+</b><b class="z">0</b><b class="g">💰 Pagar</b></div>
+</div>
+</div></header>
+
+<section id="recursos"><div class="wrap">
+<h2>Feito para o balcão</h2>
+<p class="sub">Tudo o que o atendimento do dia a dia precisa, sem complicação.</p>
+<div class="grid">
+<div class="card"><div class="i">🧮</div><h3>Digitação por centavos</h3><p>Digite 360 e o app entende R$ 3,60. Some vários itens com o botão + e veja o total em destaque.</p></div>
+<div class="card"><div class="i">💵</div><h3>Troco automático</h3><p>Informe quanto o cliente deu e o app mostra o troco na hora.</p></div>
+<div class="card"><div class="i">📱</div><h3>Pix com QR Code grande</h3><p>O QR da loja aparece em tela cheia com o total, para o cliente escanear sem erro.</p></div>
+<div class="card"><div class="i">📝</div><h3>Fiado com nome e contato</h3><p>Registre quem comprou, com WhatsApp e endereço, e marque como pago depois, no método que o cliente usou.</p></div>
+<div class="card"><div class="i">👥</div><h3>Atendentes com foto e cor</h3><p>Cada atendente tem foto, cor e tema próprios. As vendas mostram quem atendeu.</p></div>
+<div class="card"><div class="i">📋</div><h3>Histórico por dia</h3><p>Filtre por dia, fiado pendente e pagas. Exporte em planilha (XLSX ou CSV) para o contador.</p></div>
+<div class="card"><div class="i">🔁</div><h3>Sincronização entre aparelhos</h3><p>Com um toque, os atendentes compartilham vendas, fiados e o Pix da loja.</p></div>
+<div class="card"><div class="i">🔄</div><h3>Atualiza pelo próprio app</h3><p>Quando sai versão nova, o app avisa, baixa e instala. Seus dados continuam intactos.</p></div>
+<div class="card"><div class="i">👆</div><h3>Gestos fluidos</h3><p>Deslize para os lados para alternar entre Caixa e Histórico, com a tela acompanhando o dedo.</p></div>
+</div>
+</div></section>
+
+<section id="instalar" style="background:rgba(127,160,190,.08)"><div class="wrap">
+<h2>Como instalar</h2>
+<p class="sub">Funciona em celulares com Android 5.0 ou mais novo. A instalação leva um minuto.</p>
+<div class="steps">
+<div class="step"><b>Baixe o APK</b><span>Toque em "Baixar o app" acima. O arquivo vai para a pasta Downloads.</span></div>
+<div class="step"><b>Abra o arquivo</b><span>Toque no APK. Se o Android pedir, permita "Instalar apps desconhecidos" para o navegador ou gerenciador de arquivos que você usou.</span></div>
+<div class="step"><b>Confirme e abra</b><span>Toque em Instalar, abra o Caixa Fácil e informe o seu nome de atendente.</span></div>
+</div>
+<p class="sub" style="margin-top:18px">Se o celular avisar sobre "app de fonte desconhecida", é normal: o app não está na loja do Google, e é distribuído por aqui.</p>
+<div class="notas" id="notas"></div>
+</div></section>
+
+<section id="seguranca"><div class="wrap">
+<h2>Segurança</h2>
+<p class="sub">Todas as versões são assinadas com a mesma chave, e o Android só aceita atualizações assinadas por ela. Para conferir, a impressão digital (SHA-256) do certificado é:</p>
+<p><code>7d:24:c5:2c:5d:8f:87:63:10:af:07:5b:02:79:d0:16:df:4a:ee:bd:e8:17:9b:8d:3c:43:f8:0e:d4:5a:bf:ed</code></p>
+<p class="sub">Baixe o app somente deste endereço ou da aba Releases do repositório.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Perguntas frequentes</h2>
+<details><summary>Funciona sem internet?</summary><p>Sim. As vendas são registradas no próprio aparelho. A internet só é necessária para sincronizar, atualizar o app e baixar fotos e dados dos outros atendentes.</p></details>
+<details><summary>Meus dados ficam onde?</summary><p>No celular. Se a loja usar a sincronização, os dados vão para um repositório privado da loja, acessível só por quem tem o token de acesso.</p></details>
+<details><summary>Atualizar apaga meu histórico?</summary><p>Não. A atualização instala por cima e mantém tudo. Mesmo assim, faça uma exportação de vez em quando.</p></details>
+<details><summary>Funciona no iPhone?</summary><p>Não. O Caixa Fácil é só para Android.</p></details>
+</div></section>
+
+<footer><div class="wrap">Caixa Fácil · distribuído pelo GitHub Releases · <a href="https://github.com/bemestardojardim/Updates/releases" style="color:inherit">todas as versões</a></div></footer>
+
+<script>
+(function(){
+  var REPO='bemestardojardim/Updates', PREF='https://github.com/'+REPO+'/releases/download/';
+  var meta=document.getElementById('meta'), btn=document.getElementById('btnBaixar'), nt=document.getElementById('notas');
+  fetch('https://api.github.com/repos/'+REPO+'/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(rel){
+    var apk=null, a=rel.assets||[];
+    for(var i=0;i<a.length;i++){ if(/\.apk$/i.test(a[i].name||'') && typeof a[i].browser_download_url==='string' && a[i].browser_download_url.indexOf(PREF)===0){ apk=a[i]; break; } }
+    if(!apk){ meta.textContent='Versão '+(rel.tag_name||'')+' publicada. Use o botão para ver os arquivos.'; return; }
+    btn.href=apk.browser_download_url;
+    btn.textContent='⬇️ Baixar versão '+String(rel.tag_name||'').replace(/^v/i,'');
+    var mb=apk.size?(apk.size/1048576).toFixed(1)+' MB':'';
+    var dt=rel.published_at?new Date(rel.published_at).toLocaleDateString('pt-BR'):'';
+    meta.textContent=[rel.tag_name,mb,dt&&('publicada em '+dt),'Android 5.0+'].filter(Boolean).join(' · ');
+    if(rel.body){ nt.textContent='Novidades da versão '+rel.tag_name+':\n'+rel.body.slice(0,800); nt.style.display='block'; }
+  })
+  .catch(function(){ meta.textContent='Toque no botão para ver a versão mais recente no GitHub.'; });
+})();
+</script>
+</body>
+</html>
